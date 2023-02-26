@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.persistence.CascadeType;
 
 @Data
 @AllArgsConstructor
@@ -50,12 +51,12 @@ public class Booking {
 	private long passengerMobile;
 	
 	//many bookings can be done by one user
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="user_id")
 	@JsonIgnoreProperties({"userName", "password","dob"})
 	private User user;
 	
-	@ManyToOne 
+	@ManyToOne (cascade = {CascadeType.ALL})
 	@JoinColumn(name="flight_id")
 	private Flight flight;
 	
